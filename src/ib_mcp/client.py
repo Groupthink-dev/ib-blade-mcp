@@ -8,6 +8,10 @@ before this client can operate. This client does NOT handle IB login — it
 connects to an already-authenticated gateway instance.
 """
 
+# All public methods return JSON from _get/_post (typed Any). The dict[str, Any]
+# annotations are documentation — the gateway contract guarantees the shape.
+# mypy: disable-error-code="no-any-return"
+
 from __future__ import annotations
 
 import asyncio
@@ -130,8 +134,7 @@ class IBClient:
             status = await self.check_auth()
             if not status.get("authenticated", False):
                 raise AuthError(
-                    "Gateway session is not authenticated. "
-                    "Open the Client Portal Gateway in a browser to log in."
+                    "Gateway session is not authenticated. Open the Client Portal Gateway in a browser to log in."
                 )
 
     async def _ensure_account(self) -> str:

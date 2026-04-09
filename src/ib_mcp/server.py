@@ -424,7 +424,7 @@ async def ib_order_preview(
     price: Annotated[float | None, Field(description="Limit price (required for LMT/STP_LMT)")] = None,
     tif: Annotated[str, Field(description="Time-in-force: DAY, GTC, IOC, OPG")] = "DAY",
 ) -> str:
-    """Preview order impact: margin, commission, equity change. Does NOT place the order. Requires IB_WRITE_ENABLED=true."""
+    """Preview order impact: margin, commission, equity change. Does NOT place. Requires IB_WRITE_ENABLED=true."""
     gate = check_write_gate()
     if gate:
         return gate

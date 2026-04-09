@@ -108,10 +108,7 @@ def resolve_config() -> ProviderConfig:
     """
     gateway_url = os.environ.get("IB_GATEWAY_URL", "").strip()
     if not gateway_url:
-        raise ValueError(
-            "IB Gateway URL not configured. Set IB_GATEWAY_URL "
-            "(e.g. https://localhost:5000)"
-        )
+        raise ValueError("IB Gateway URL not configured. Set IB_GATEWAY_URL (e.g. https://localhost:5000)")
 
     # Strip trailing slash
     gateway_url = gateway_url.rstrip("/")
@@ -174,5 +171,5 @@ def scrub_credentials(text: str, config: ProviderConfig | None = None) -> str:
     text = re.sub(r"(cookie[=:]\s*)\S+", r"\1****", text, flags=re.IGNORECASE)
     text = re.sub(r"(session[=:]\s*)\S+", r"\1****", text, flags=re.IGNORECASE)
     text = re.sub(r"(token[=:]\s*)\S+", r"\1****", text, flags=re.IGNORECASE)
-    text = re.sub(r"(Authorization:\s*)\S+", r"\1****", text, flags=re.IGNORECASE)
+    text = re.sub(r"(Authorization:\s*).+", r"\1****", text, flags=re.IGNORECASE)
     return text

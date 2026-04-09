@@ -12,7 +12,6 @@ from __future__ import annotations
 
 from typing import Any
 
-
 # ---------------------------------------------------------------------------
 # Utilities
 # ---------------------------------------------------------------------------
@@ -149,9 +148,14 @@ def format_portfolio_summary(data: dict[str, Any]) -> str:
         return "No summary data"
     parts: list[str] = []
     for key in [
-        "netliquidation", "totalcashvalue", "unrealizedpnl",
-        "realizedpnl", "grosspositionvalue", "availablefunds",
-        "buyingpower", "maintmarginreq",
+        "netliquidation",
+        "totalcashvalue",
+        "unrealizedpnl",
+        "realizedpnl",
+        "grosspositionvalue",
+        "availablefunds",
+        "buyingpower",
+        "maintmarginreq",
     ]:
         entry = data.get(key, {})
         if isinstance(entry, dict):
@@ -201,8 +205,7 @@ def format_pnl(data: dict[str, Any]) -> str:
         nl = acct_data.get("nl")
         mv = acct_data.get("mv")
         parts.append(
-            f"{acct_id}: daily_pnl={_usd(dpl)} | unrealised={_usd(upl)} | "
-            f"nav={_usd(nl)} | mkt_value={_usd(mv)}"
+            f"{acct_id}: daily_pnl={_usd(dpl)} | unrealised={_usd(upl)} | nav={_usd(nl)} | mkt_value={_usd(mv)}"
         )
     return "\n".join(parts) if parts else "No P&L entries"
 
@@ -249,9 +252,18 @@ def format_contract_info(data: dict[str, Any]) -> str:
         return "No contract info"
     parts: list[str] = []
     for key in [
-        "con_id", "symbol", "companyName", "exchange", "listingExchange",
-        "secType", "currency", "category", "industry",
-        "maturity_date", "multiplier", "min_tick",
+        "con_id",
+        "symbol",
+        "companyName",
+        "exchange",
+        "listingExchange",
+        "secType",
+        "currency",
+        "category",
+        "industry",
+        "maturity_date",
+        "multiplier",
+        "min_tick",
     ]:
         val = data.get(key)
         if val is not None:
@@ -336,7 +348,7 @@ def format_history(data: dict[str, Any]) -> str:
         if isinstance(t, (int, float)):
             import datetime
 
-            t = datetime.datetime.fromtimestamp(t / 1000, tz=datetime.timezone.utc).strftime("%Y-%m-%d %H:%M")
+            t = datetime.datetime.fromtimestamp(t / 1000, tz=datetime.UTC).strftime("%Y-%m-%d %H:%M")
         lines.append(
             f"{t} | {_price(bar.get('o'))} | {_price(bar.get('h'))} | "
             f"{_price(bar.get('l'))} | {_price(bar.get('c'))} | {_qty(bar.get('v'))}"
@@ -375,9 +387,17 @@ def format_order_status(data: dict[str, Any]) -> str:
         return "No order data"
     parts = []
     for key in [
-        "orderId", "symbol", "side", "orderType", "price",
-        "totalSize", "filledQuantity", "remainingQuantity",
-        "status", "lastFillPrice", "avgFillPrice",
+        "orderId",
+        "symbol",
+        "side",
+        "orderType",
+        "price",
+        "totalSize",
+        "filledQuantity",
+        "remainingQuantity",
+        "status",
+        "lastFillPrice",
+        "avgFillPrice",
     ]:
         val = data.get(key)
         if val is not None:
