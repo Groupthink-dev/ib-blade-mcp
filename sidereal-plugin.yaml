@@ -1,0 +1,92 @@
+name: ib-blade-mcp
+version: "0.1.0"
+description: "Interactive Brokers operations — portfolio, market data, orders, scanners via Client Portal Gateway"
+author: groupthink-dev
+tier: certified
+contract: brokerage-v1
+
+services:
+  brokerage:
+    # System (2)
+    status: ib_status
+    tickle: ib_tickle
+    # Portfolio (5)
+    accounts: ib_accounts
+    positions: ib_positions
+    portfolio_summary: ib_portfolio_summary
+    cash_balances: ib_cash_balances
+    pnl: ib_pnl
+    # Market data (6)
+    contract_search: ib_contract_search
+    contract_detail: ib_contract_detail
+    quote: ib_quote
+    historical: ib_historical
+    scanner_params: ib_scanner_params
+    scanner_run: ib_scanner_run
+    # Orders — read (3)
+    orders: ib_orders
+    order_status: ib_order_status
+    trades: ib_trades
+    # Orders — write (5)
+    order_preview: ib_order_preview
+    place_order: ib_place_order
+    confirm_order: ib_confirm_order
+    modify_order: ib_modify_order
+    cancel_order: ib_cancel_order
+
+setup:
+  icon: "📈"
+  blurb: "Connect to Interactive Brokers for portfolio monitoring, market data, and order management via the Client Portal Gateway."
+  auth_model: gateway
+  complexity: moderate
+  prerequisites:
+    - "IB Client Portal Gateway running and authenticated"
+    - "Python 3.12+"
+  fields:
+    - key: IB_GATEWAY_URL
+      label: "Gateway URL"
+      placeholder: "https://localhost:5000"
+      secret: false
+      required: true
+    - key: IB_ACCOUNT_ID
+      label: "Account ID"
+      placeholder: "U1234567 (auto-detected if blank)"
+      secret: false
+      required: false
+    - key: IB_SSL_VERIFY
+      label: "Verify SSL"
+      placeholder: "false (for self-signed gateway certs)"
+      secret: false
+      required: false
+
+install:
+  runtime: uv
+  package: ib-blade-mcp
+  command: ib-blade-mcp
+
+env:
+  - name: IB_GATEWAY_URL
+    description: "Client Portal Gateway URL"
+    secret: false
+  - name: IB_ACCOUNT_ID
+    description: "Default brokerage account ID"
+    secret: false
+  - name: IB_SSL_VERIFY
+    description: "Verify gateway SSL certificates"
+    default: "true"
+  - name: IB_WRITE_ENABLED
+    description: "Enable order operations (place, modify, cancel)"
+    default: "false"
+  - name: IB_MCP_API_TOKEN
+    description: "Bearer token for HTTP transport"
+    secret: true
+  - name: IB_MCP_TRANSPORT
+    description: "Transport mode (stdio or http)"
+    default: "stdio"
+
+conformance:
+  required: "8/8"
+  recommended: "5/7"
+  optional: "0/2"
+  gated: "5/5"
+  last_tested: "2026-04-09"
