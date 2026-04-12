@@ -3,6 +3,8 @@ version: "0.1.0"
 description: "Interactive Brokers operations — portfolio, market data, orders, scanners via Client Portal Gateway"
 author: groupthink-dev
 tier: certified
+author_type: first-party
+readiness: production
 contract: brokerage-v1
 
 services:
