@@ -2,9 +2,11 @@ name: ib-blade-mcp
 version: "0.1.0"
 description: "Interactive Brokers operations — portfolio, market data, orders, scanners via Client Portal Gateway"
 author: groupthink-dev
+licence: MIT
 tier: certified
 author_type: first-party
 readiness: production
+homepage: https://github.com/Groupthink-dev/ib-blade-mcp
 contract: brokerage-v1
 
 services:
@@ -90,5 +92,4 @@ conformance:
   required: "8/8"
   recommended: "5/7"
   optional: "0/2"
-  gated: "5/5"
   last_tested: "2026-04-09"
