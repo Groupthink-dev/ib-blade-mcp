@@ -1,5 +1,5 @@
 name: ib-blade-mcp
-version: "0.1.0"
+version: "0.1.1"
 description: "Interactive Brokers operations — portfolio, market data, orders, scanners via Client Portal Gateway"
 author: groupthink-dev
 licence: MIT

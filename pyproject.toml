@@ -1,6 +1,6 @@
 [project]
 name = "ib-blade-mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "Interactive Brokers MCP Server — portfolio, market data, orders, scanners, Flex Queries via Client Portal Gateway"
 readme = "README.md"
 license = {text = "MIT"}
