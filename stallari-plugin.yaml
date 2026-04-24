@@ -2,7 +2,7 @@ name: ib-blade-mcp
 version: "0.1.1"
 description: "Interactive Brokers operations — portfolio, market data, orders, scanners via Client Portal Gateway"
 author: groupthink-dev
-licence: MIT
+license: MIT
 tier: certified
 author_type: first-party
 readiness: production
