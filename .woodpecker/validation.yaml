@@ -44,7 +44,7 @@ steps:
       - python --version
       - pip install --quiet --disable-pip-version-check uv
       - uv --version
-      - uv sync --group dev --group test --frozen
+      - uv sync --group dev --group test
       - uv run ruff check src/ tests/
       - uv run ruff format --check src/ tests/
       - uv run mypy src/ib_mcp
